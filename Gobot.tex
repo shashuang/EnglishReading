@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 5,2018}
+
+\title{Facebook’s open-source Go bot }
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+
+Today, I read this paper that the title is “Facebook’s open-source Go bot can now beat professional players”. It is generally known that AlphaGo is developed by DeepMind’s group of Google Company. AlphaGo is based on deep learning algorithm, and is also the first game of artificial intelligence. At the moment time, it is the first computer program to defeat a professional human Go player, the first program to defeat a Go world champion, and arguably the strongest Go player in history\cite{alphogo2017}. As the following of Figure \ref{1}, Jie Ke, the first Chinese go player in the world, fought against AlphaGo and finally AlphaGo won. This is called “man-machine war”. But AlphaGo is closed source. We don’t know everything in the internal code.
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.5\textwidth]{K.jpg}
+\caption{Jie Ke, the first Chinese go player in the world, fought against AlphaGo}
+   \label{1}
+\end{figure}
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.5\textwidth]{F.jpg}
+\caption{Facebook built a Go bot of its own}
+   \label{2}
+\end{figure}
+
+Facebook’s engineers developed a Go bot of its own, as the following of Figure \ref{2} announced. In contrast, Facebook has open-sourced its bot. Facebook created an open source Go bot, in order to make this work both reproducible and available to AI researches around the world\cite{gobot2018}. This bot can also win the professional Go players. And it has achieved professional status. Meanwhile, it performs well enough to answer some of the key questions unanswered by AlphaGo.
+
+
+
+
+
+With the development of the artificial intelligence technology, human has developed some things that we don’t know. This is innovation. Because of this, human history can develop go ahead.
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
