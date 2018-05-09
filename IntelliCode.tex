@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 9,2018}
+
+\title{Microsoft’s new IntelliCode }
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+
+Today, I read this paper about microsoft’s new intelliCode. Programming language is most important for key technologies. For example, C, C++, JAVA, C\#, PYTHON etc. are usually usable programming language. And programming language is required to code environment. Microsoft’s new intelliCode is applied in Visual Studio. With intelliSense, Visual Studio has long featured a smart code completion feature that makes writing code faster and less error-prone\cite{IntelliCode2018}.
+
+
+
+For now, this intelliCode is only available for C\# code in Visual Studio 2017\cite{IntelliCode2018}. With intelliCode, it is based on a machine learning model that has been trained by looking at lots of code. And the tool can understand what you’re trying to achieve. As shown in the Figure \ref{1}, intelliCode can make the right suggestions based on the context and patterns in users own code.
+
+
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.5\textwidth]{I.jpg}
+\caption{intelliCode  suggestions based on the context .}
+   \label{1}
+\end{figure}
+
+
+In the near future, the tool can apply to other programming language. It can improve the efficiency of programming for engineers who need to write thousands of code. Technologies core is involved in lots of code that engineers have written, and only if the existence of code, machines or other something can finish the work that man can’t accomplish. And human’s society is able to go ahead.
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
