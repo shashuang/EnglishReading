@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 11,2018}
+
+\title{THE ARCHITECTURE OF THE VERIFICATION SYSTEM}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+
+This paper is dedicated to the development of an assistive computer vision-based system for medication verification before dispensing it to patients, for example, in long-term healthcare facilities\cite{vmsystem2018}. The paper mainly include five points, and mainly introduce the architecture of the verification system, attentive vision approach of pill detection and identification, extraction of pill descriptors, medication verification and experimental results. Today, I read the first point that the architecture of the verification system.
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.5\textwidth]{M.png}
+\caption{The attentive vision-based system for medication verification.}
+   \label{1}
+\end{figure}
+
+
+As shown in the Figure \ref{1}, the proposed system consists of the following components\cite{vmsystem2018}. We need take the medication pills disturbed by nurse for a patients in the below of pill scanner. At the moment, pill scanner connect with nurse interface. And nurse need to require the patients’ name, and can find the prescription data of the patient by patients management system. And the pill scanner is also color and infrared cameras. It can catch clearly up with the number, the shape, and the color of medication. By internet connection, these information of images is inputted into medication verification server that can start deal with it. By some patient’s information, medication verification serve can match with pill database information that has been recorded, then can find the false pill. And it can remind nurse replace false pill, in order to guarantee that there is no error during the treatment of the patient.
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
