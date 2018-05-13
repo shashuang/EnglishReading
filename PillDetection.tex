@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 13,2018}
+
+\title{Attentive vision approach to pill detection and identification}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+Today, I read the second part of this thesis about a method of pill detection and identification. The flowchart of the attentive vision-based algorithm to pill detection and identification is shown in Figure \ref{1}. It consists of two processing phases: machine learning phase and image analysis for pill identification\cite{vmsystem2018}. There are two tasks in the machine learning phase. One task of the learning phase is to obtain the pill descriptor representation in the database of reference pill descriptors by analyzing images of medication pills (one pill per image). Another task of the learning phase is to obtain optimal parameters for the pill detection and identification algorithms.
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.5\textwidth]{P.png}
+\caption{Flow-diagram of the attentive vision approach to pill detection and identification.}
+   \label{1}
+\end{figure}
+
+The pill detection is implemented trough extraction of feature-point areas\cite{vmsystem2018}. The feature points are detected by formula (\ref{formula 1}):
+%插入公式
+\begin{equation}
+F [i,j,t,\rho] = \sum_{n=1}^N \beta_n \cdot s_n(i,j,t,\rho)
+\label{formula 1}
+\end{equation}
+Where (i,j) is the image coordinates, $\rho$ is scale, and t is time. This function is used to compute the local maxima of the multi-component spatiotemporal isotropic attention (MSIA) operator.
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
