@@ -1,0 +1,62 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 15,2018}
+
+\title{3D reconstruction of hidden branch structures made by using image analysis and AI tech}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+Today, I read this paper about three-dimensional (3D) reconstruction of plant structure. Scientists have succeeded in reconstruction of plant branch structures, including the branch structures under leaves, by using image analysis and artificial intelligence technology, from this article.
+
+
+3D reconstruction of hidden branch structures is shown in Figure \ref{1}. This is the estimated 3D plant branch structure. Scientists have improved the traditional image-to-image translation approach, and increased a Bayesian deep learning framework and 3D reconstruction\cite{3Dplant2018}. Using this approach, they can achieve 3D reconstruction of plant structure, including those hidden under leaves. At present, the results of this study have not been published yet. Pleasantly surprised, we will look the results in the coming of June. However, it is gratifying to note that this article will first meet with you in June 2018. The results of this study will be presented at the EEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2018) to be held from 18 through June 22, 2018\cite{3Dplant2018}.
+
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.4\textwidth]{P.jpg}
+\caption{This is the estimated 3D plant branch structure.}
+   \label{1}
+\end{figure}
+
+This research will help to realize future cultivation technology. And it is helpful for planter to know the growing situation of plants, apply for best trimming or pruning methods for plants and forecast future growth of plants. This is a good attempt to apply artificial intelligence technology to agriculture. This can propose the development of future agriculture.
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
