@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{cite}
+
+\usepackage{color}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 17,2018}
+
+\title{Mapping the dynamics of a smile to enable gender recognition}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+This paper is concerned with the identification of gender from the dynamic behavior of the face. The dynamic of how men and women smile differs measurably, according to new research, enabling artificial intelligence to automatically assign gender purely based on a mile\cite{Bradford2018}.
+
+
+
+As shown in Figure \ref{1}, this research group created a computational framework for smile dynamics. There are the key components of framework for the analysis of the dynamic of a smile. In order to research the difference from the dynamic movement of the smile between men and women, the team mapped 49 landmarks on the face, mainly around the eyes, mouth and down the nose\cite{Ugail2018}. Following the Figure \ref{2}. The positions corresponding to each point are as shown in Table \ref{table1}.
+
+
+
+
+
+%插入图片
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.4\textwidth]{F.png}
+\caption{ Block diagram showing the key components of the computational framework for automatic analysis of smile dynamics.}
+   \label{1}
+\end{figure}
+
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.4\textwidth]{S.png}
+\caption{Automatic landmark detection. a An example input face, b landmarks detected using the CHEHRA model.}
+   \label{2}
+\end{figure}
+
+%插入表格
+\begin{table}[!htb]
+\caption{Description of the geometric distances from which dynamic spatial parameters are derived}
+ \label{table1}
+\begin{tabular}{lll}
+\hline
+Distance	&Description	                   &Landmarks\\ 
+\hline
+$d_1$        &Mouth corners                     &$P_{32}$ to $P_{38}$ \\
+$d_2$        &Upper and lower lip               &$P_{45}$ to $P_{48}$ \\
+$d_3$        &Mouth to nose (left corners)      &$P_{32}$ to $P_{27}$ \\
+$d_4$        &Mouth to nose (right corners)     &$P_{38}$ to $P_{21}$ \\
+$d_5$        &Mouth to eye (left corners)       &$P_{32}$ to $P_{11}$ \\
+$d_6$        &Mouth to eye (right corners)      &$P_{38}$ to $P_{20}$ \\
+\hline
+\end{tabular}
+\end{table}
+The result of the study found that women’s smile are more expansive and women definitely have broader smiles, expanding their mouth and lip area far more than men\cite{Bradford2018}. And this research have unique meaning that depend on a dynamic that is unique to an individual and would be very difficult to mimic or alter.
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
