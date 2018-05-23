@@ -1,0 +1,119 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{abstract}
+\usepackage{cite}
+
+\usepackage[justification=centering]{caption}
+
+\usepackage[colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green
+            ]{hyperref}
+
+\usepackage{ragged2e}
+
+\bibliographystyle{plain}
+% …Ë÷√…œ±Íœ‘ æ≤ŒøºŒƒœ◊±‡∫≈µƒ√¸¡Ó
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 23,2018}
+
+\title{The experimental results of medication verification}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+\begin{onecolabstract}
+\emph{This paper mainly descripted that researcher develop a video-based method for estimation of energy expenditure in athletes. This method is that by steps in walking and running, using thermal video analysis to automatically extract the cyclic motion pattern, and analysis the frequency ~\cite{Gade_2017_CVPR_Workshops}. Experiments tested in 5,8,10, and 12 km/h with one subject.}
+\end{onecolabstract}
+
+
+\section{Methods}
+
+
+\subsection{Segmentation}
+
+At the first time, image acquisition technique is essential. In this study, scientists use a thermal camera. And the thermal camera can catch infrared radiation~\cite{Gade_2017_CVPR_Workshops}. Input image is shown in Figure ~\ref{1}. Because of complex background and noise of environment, scientists used background subtraction to obtain difference image, and obtained a binary image by thresholding the difference image, as shown in Figure ~\ref{fig:subfig:b} and ~\ref{fig:subfig:c}. As a result of the reflection of thermal radiation from body in the floor, cutting the binary image is required. Segmentation results is shown in Figure ~\ref{fig:subfig:d}.
+
+
+
+
+
+
+%≤Â»ÎÕº∆¨
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.4\textwidth]{1.jpg}
+\caption{ Example of thermal image from a sports arena.}
+   \label{1}
+\end{figure}
+
+
+%≤Â»ÎÕº∆¨
+\begin{onecolumn}
+\begin{figure}
+\centering
+\subfigure[Thermal]{
+\label{figa} %% label for first subfigure
+\includegraphics[width=0.2\textwidth]{2a.jpg}}
+%\hspace{1in}
+\subfigure[Difference]{
+\label{fig:subfig:b} %% label for second subfigure
+\includegraphics[width=0.2\textwidth]{2b.jpg}}
+\subfigure[Binary]{
+\label{fig:subfig:c} %% label for second subfigure
+\includegraphics[width=0.2\textwidth]{2c.jpg}}
+\subfigure[Binary with cut]{
+\label{fig:subfig:d} %% label for second subfigure
+\includegraphics[width=0.2\textwidth]{2d.jpg}}
+\caption{ Input image (a) and results of three segmentation steps: (b) background subtraction, (c) thresholding (threshold value 50).}
+\label{2} %% label for entire figure
+\end{figure}
+\end{onecolumn}
+
+
+\subsection{Estimation of energy expenditure. }
+
+
+This method is realized by extracting the cyclic motion pattern in walking and running. And Figure 3 is shown one step cycle of a test person running. As seen in Figure ~\ref{3}, one step consists of 12 images of the thermal images. These images indicated that the active situation of one step from a test person.
+
+%≤Â»ÎÕº∆¨
+%≤Â»ÎÕº∆¨
+\begin{figure}[!htb]
+%\small
+\centering
+\includegraphics[width=0.4\textwidth]{3.jpg}
+\caption{ Sequence of frames during one step cycle with bounding boxes marked.}
+   \label{3}
+\end{figure}
+
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
