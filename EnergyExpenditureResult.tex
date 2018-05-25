@@ -1,0 +1,123 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{siunitx}
+
+\usepackage{cite}
+
+\usepackage{multirow}
+
+\usepackage[justification=centering]{caption}
+
+\usepackage[colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page
+            ]{hyperref}
+
+\usepackage{ragged2e}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 25,2018}
+
+\title{Measuring energy expenditure in sports by thermal video analysis}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+
+\section{Experiments}
+
+Traditionally, in sports science, energy expenditure is measured directly by oxygen uptake ~\cite{Alpher01}. Therefore, the developed video based method is evaluated against oxygen uptake. The experiment is divided into two tests with different running protocols. As shown in Figure ~\ref{1} and  ~\ref{2}, a test person need to run along the red track, including the red line and the red circle. The blue thing is a thermal camera, and two rays are the range of radiation. A tester need to run \si{5}{km/h} (walking), \si{8, 10, 12}{km/h} (running) in each running protocols.
+
+\begin{figure*}[!htb]
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=0.4\textwidth]{1.jpg}
+\caption{Sketch of test setup for test 1. Participant runs along the red line and turns at each end point.}
+ \label{1}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=0.4\textwidth]{2.jpg}
+\caption{ Sketch of test setup for test 2. Participant run along the red circle.}
+ \label{2}
+\end{minipage}
+\end{figure*}
+
+\subsection{Results}
+
+Each ratio graph local maximum can be interpreted as a step or cyclic repetition of motion. Table ~\ref{table1} summaries the number of detected maximums and the gross oxygen uptake measured at the same sequence. Figure ~\ref{3} and ~\ref{4} plot these results.
+
+\begin{figure*}[!htb]
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=0.8\textwidth]{3.jpg}
+\caption{ Results of test 1.}
+ \label{3}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=0.8\textwidth]{4.jpg}
+\caption{  Results of test 2.}
+ \label{4}
+\end{minipage}
+\end{figure*}
+
+%插入表格
+\begin{table*}[!htb]
+\centering
+\caption{ Oxygen uptake and step counts from both tests.}
+ \label{table1}
+ \tabcolsep2.1pt
+\renewcommand\arraystretch{1.3}
+\begin{tabular}{@{\extracolsep{\fill}}|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{}    	          & \si{5}{km/h}	& \si{8}{km/h}    & \si{10}{km/h}   & \si{12}{km/h}  \\
+\hline
+\multirow{2}{*}{Line}  &  Gross oxygen uptake [ml $O_2$/kg/min] &13.0 &26.8 &35.7 &49.6 
+\\ \cline{2-6} & Maximums [counts/min] &116 &174 &177 & 184\\
+\hline
+\multirow{2}{*}{Circle}  &  Gross oxygen uptake [ml $O_2$/kg/min] &12.7 &24.7 &29.8 &36.4
+\\  \cline{2-6} & Maximums [counts/min] &163 &182 &192 & 197\\
+\hline
+\end{tabular}
+\end{table*}
+
+
+\section{Discussion}
+Results are observed that the two difference test scenarios have different energy costs. As the increase of running ratio, the difference in gross oxygen uptake is getting bigger between line and circle patterns, and line pattern requires more energy than the circle pattern. The results indicate a linear correlation between the new non-invasive measurement method and oxygen uptake\cite{Gade_2017_CVPR_Workshops}.
+
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
