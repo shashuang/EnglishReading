@@ -1,0 +1,109 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{ctex}
+
+\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{graphicx}
+
+\usepackage{subfigure}
+
+\usepackage{siunitx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{cite}
+
+\usepackage{multirow}
+
+\usepackage[justification=centering]{caption}
+
+\usepackage[colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page
+            ]{hyperref}
+
+\usepackage{ragged2e}
+
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\author{Shuang Sha}
+
+\date{May 27,2018}
+
+\title{Slot Cars: 3D Modelling for Improved Visual Traffic Analytics}
+
+
+
+
+\begin{document}
+
+\twocolumn
+\maketitle
+
+
+\section{Introduction and Prior work}
+
+In order to obtain individual vehicle to count the number of vehicle from camera image, scientists have done a lot of work. Vehicles project to the image in clusters and are often only partially visible due to occlusion. This brings trouble in some work. Many researchers have attempted to solve this problem using 2D spatiotemporal constraints \cite{Alpher01,Alpher02,Alpher03}. Those methods are limited, and vehicle detection is not very accurate.
+
+To overcome these limitations this paper propose a 3D approach. To solve this problem, researchers take as inspiration the earlier work of Song and Nevatia \cite{Alpher04}. In datasets researchers have enumerated 13 different semantic vehicle categories, and find that the prior distribution is far from uniform, as shown in Figure ~\ref{1}. Researchers elect to employed simpler cuboid models, as shown in Figure ~\ref{2}, that have been used effectively in recent work on camera calibration.
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.4\textwidth]{1.jpg}
+\caption{ Distribution of vehicle classes for our training dataset..}
+ \label{2}
+\end{figure}
+
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.4\textwidth]{2.jpg}
+\caption{Example cuboid model.}
+ \label{2}
+\end{figure}
+
+\section{Datasets and Geometry}
+
+As shown in Figure ~\ref{3}, establishing coordinate system [X, Y, Z] centered at the camera, where Z-axis is in the upward normal direction. And researchers align the x-axis of the image coordinate system with the X axis of the word coordinate system, out of the page.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.4\textwidth]{3.jpg}
+\caption{ Camera geometry. Both the X-axis of the world frame and the x-axis of the image frame point out of the page.}
+ \label{3}
+\end{figure}
+Under these conditions, a point $[X, Y]^T$ on the ground plane projects to a point $[x, y]^T$ on the image plane according to
+\begin{equation}
+\lambda[x,y,1]^T=H[X,Y,1]^T
+\end{equation}
+
+where $\lambda$ is a scaling factor and the homography H is shown  :
+\begin{equation}
+H={
+\left[ \begin{array}{ccc}
+f &0 & 0 \\
+0 &f\cos\phi &-fD\sin\phi \\
+0 &\sin\phi &D\cos\phi   \\
+\end{array}
+\right ]}
+\end{equation}
+where $\phi$ is the tilt angle of the camera relative to the ground plane: $\phi = 0$ when the camera points straight down at the ground surface and increases to $\pi/2$ as the camera tilts up toward the horizon.
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
