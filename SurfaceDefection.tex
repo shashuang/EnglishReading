@@ -1,0 +1,96 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ctex}
+
+%\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{cite}
+
+\usepackage[justification=centering]{caption}
+
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page
+            ]{hyperref}
+            
+\cvprfinalcopy
+\def\cvprPaperID{****} 
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+%\setcounter{page}{4321}
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\title{Simulation of specular surface imaging based
+on computer graphics: application on a vision
+inspection system}
+\author{Shuang Sha\\\\ May 29,2018}
+
+\begin{document}
+
+
+
+
+\maketitle
+
+
+\begin{abstract}
+  The main purpose of this paper is to detect surface defects on reflecting industrial parts. A system based machine vision is designed to detect surface defects in geometry. Through specific lighting devices, defects can be imaged, and then image segmentation is processed. And a real-time inspection of reflective products is possible.
+\end{abstract}
+
+\section{Introduction}
+
+Highly reflective surfaces inspection is a problem met frequently within the automatic control of industrial parts ~\cite{Sanderson1988}. Usually, this work require to be done manually by human. But the results of detection is impacted to human’s subjective and tiredness.
+
+The human eye does not necessarily see all the defects. The error rate is relatively high.
+The system described by this paper based machine vision is a particular lighting device system that enables efficient real time defect detection and some of the features design performed via computer graphics simulation~\cite{Seulin2002}.
+
+\section{Specular surface imaging}
+\subsection{Lighting principle}
+Figure ~\ref{1} illustrates the lighting principle. In the first case, without defect, the surface reflects a dark zone of the lighting. In the second case, the defect deflects luminous rays coming from the luminous zone and so, the defect appears as a clear spot in a dark zone.
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=0.8\textwidth]{1.jpg}
+\caption{ Lighting principle.}
+ \label{1}
+\end{figure*}
+
+\subsection{Implementation}
+Through experiments, researchers can find that the size of the defect signature on the image depends on the distance between the light transition and the defect, as shown in Figure ~\ref{2}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.4\textwidth]{2.jpg}
+\caption{Defect size variation.}
+ \label{2}
+\end{figure}
+
+
+As shown in Figure ~\ref{3}, it represents a defect size (percentage of real size) versus the distance between two light transitions and the center of the defect (normalized by the defect dimensions) and the corresponding images.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.4\textwidth]{3.jpg}
+\caption{ Defect size variation versus distance to the first light transition (experimental results).}
+ \label{3}
+\end{figure}
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
