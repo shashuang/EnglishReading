@@ -1,0 +1,110 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ctex}
+
+%\usepackage{multicol}
+
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{lscape}
+
+\usepackage{cite}
+
+\usepackage[justification=centering]{caption}
+
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page
+            ]{hyperref}
+
+\cvprfinalcopy
+\def\cvprPaperID{****}
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+%\setcounter{page}{4321}
+\bibliographystyle{plain}
+% 设置上标显示参考文献编号的命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\title{Marginal loss for deep face recognition}
+\author{Shuang Sha\\\\ May 31,2018}
+
+\begin{document}
+
+
+
+
+\maketitle
+
+
+\begin{abstract}
+  In recent years, scientists apply convolutional neural networks (CNN) to face recognition. Due to that CNN bless with the feature of high capacity in learning discriminative features, it can improve the performance of face recognition. According this feature, the results of this study is that researchers proposed a new supervision signal named marginal loss for deep face recognition.
+\end{abstract}
+
+\section{Marginal Loss}
+
+The most widely used classification loss function, softmax loss, is presented as follows:
+\begin{equation}
+L_s = \sum_{i=1}^m log\frac{e^{W_{y_i}^T x_i + b_{y_i}}}{\sum_{j=1}^n e^{W_{J}^T x_i+b_j}}
+\end{equation}
+
+In this paper, scientists have improved the marginal loss function to minimize the intra-class variations and keep inter-classes distances within the batch, as follows:
+\begin{small}
+\begin{equation}
+L_m = \frac{1}{m^2-m}\sum_{i,j,i \neq j}^m \left\lgroup \xi -y_{ij}
+\left\lgroup \theta-\left\Arrowvert \frac{x_i}{\|x_i\|}-\frac{x_j}{\|x_j\|}\right\Arrowvert\right\rgroup \right\rgroup
+\end{equation}
+\end{small}
+
+Scientists adopt the joint supervision of softmax loss and marginal loss to train the CNNs for discriminative feature learning.
+\begin{equation}
+ L=L_s+\lambda L_m
+\end{equation}
+Where $\lambda$ is used for balancing the two loss functions.
+
+\section{Experiment}
+\subsection{Experiments on the LFW and YTF datasets}
+Scientists evaluate the proposed marginal loss model on two famous face recognition benchmarks, Labelled Faces in the Wild (LFW, image) and YouTube Faces (YTF, video) datasets, under unconstrained environments. And the experiment results is shown in Table ~\ref{table1}. In Table ~\ref{table1}, scientists compare the proposed marginal loss method against many existing advanced models. From the results, the proposed marginal loss can enhance the discriminative power of the deeply learned face features~\cite{Deng_2017_CVPR_Workshops}.
+
+%插入表格
+\begin{table}[!htb]
+\centering
+\caption{Verification performance of different methods on LFW and YTF datasets.}
+ \label{table1}
+% \tabcolsep2.1pt
+%\renewcommand\arraystretch{1.3}
+\begin{tabular}{@{\extracolsep{\fill}} |c|c|c|c|}
+\hline
+Methods   & Images  & LFW($\%$)   & YTF($\%$)\\
+\hline
+Deep ID\cite{Sun2014}         &   &99.47  &93.20 \\
+VGG Face~\cite{Parkhi2015}       &2.6M    &98.95  &97.30 \\
+Deep Face~\cite{Taigman2014}     &4M      &97.35  &91.40 \\
+Fusion~\cite{Taigman2015}      &500M    &98.37  & \\
+FaceNet~\cite{Schroff2015}       &200M    &99.63  &95.10 \\
+Baidu                 &1.3M    &99.13  & \\
+Center Loss~\cite{Wen2016}       &0.7M    &99.28  &94.9 \\
+Range Loss                       &1.5M    &99.52  &93.70 \\
+Multibatch            &2.6M    &98.8  & \\
+Aug                   &0.5M    &98.06  &\\
+\hline
+Softmax Loss                     &4M      &98.87  &94.16 \\
+Marginal Loss                    &4M      &99.48  &95.98 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\renewcommand\refname{Reference}
+%\bibliographystyle{plain}
+\bibliography{books}
+
+
+\end{document}
+
