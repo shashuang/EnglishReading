@@ -1,0 +1,77 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Forecasting human dynamics from static images}
+
+\author{Shuang Sha \\\\ June 31,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  This paper proposed that forecasting human dynamics from static images at the first time. Researchers proposed the 3D Pose Forecasting Network (3D-PFNet). They train our 3D-PFNet using a three-step training strategy to leverage a diverse source of training data, including image and video based human pose datasets and 3D motion capture (MoCap) data.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+Human pose forecasting is the capability of predicting future human body dynamics from visual observations. For example, by looking at the left image of Figure ~\ref{fig:onecol}, we can predict that the next step of the tennis player, namely a forehand swing. As shown in the right image of Figure ~\ref{fig:onecol}, this is the sequence of upcoming pose.
+
+\begin{figure}[!htb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.jpg}
+\end{center}
+   \caption{Forecasting human dynamics from static images. Left:
+the input image. Right: the sequence of upcoming poses.}
+\label{fig:onecol}
+\end{figure}
+
+This paper presents the first study on human pose forecasting from static images~\cite{chao2017forecasting}. The chief task is to take a single RGB image and output a sequence of future human body poses. Firstly, as opposed to other forecasting tasks that assume a multi-frame input (e.g. videos) ~\cite{srivastava2015unsupervised}, this work assumes a single-frame input. Secondly, like most forecasting problems ~\cite{yuen2010data}, this work first represent the forecasted poses in the 2D image space, and then convert from 2D space to 3D space.
+
+%------------------------------------------------------------------------
+\section{Network architecture}
+
+This paper proposed a deep recurrent network to predict human skeleton sequences, as shown in Figure~\ref{fig:twocol}. This network is divided into two components: (1) a 2D pose sequence generator that takes an input image and sequentially generate 2D body poses, where each pose is represented by heatmaps of keypoints; (2) a 3D skeleton converter that converts each 2D pose into a 3D skeleton.
+\begin{figure}[!htb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{2.jpg}
+\end{center}
+   \caption{A schematic view of the unrolled 3D-PFNet.}
+\label{fig:twocol}
+\end{figure}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
