@@ -1,0 +1,66 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Neural module networks}
+
+\author{Shuang Sha \\\\ June 4,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  This paper described a procedure for constructing and learning neural module networks, which compose collections of jointly-trained neural ¡°modules¡± into deep networks for question answering. This method decomposes questions into linguistic substructures, and uses these structures to dynamically instantiate modular networks (with reusable components for recognizing things, classifying colors, etc.).
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+This paper describes an approach to visual question answering based on a new model architecture that is called a neural module network (NMN). For example, as shown in Figure ~\ref{fig:onecol}, given an image and an associated question, and this question is where the dog is. A corresponding answer predicted is that the dog is on the couch. Figure ~\ref{fig:onecol} is a schematic representation of this paper proposed model. The visual question answering task has significant applications to human-robot interaction, search, and accessibility, and has been the subject of a great deal of recent research attention ~\cite{ma2016learning,malinowski2015ask,Yu2016Visual}. The main contribution of this paper is that this paper described neural module networks, a general architecture for discretely composing heterogeneous, jointly-trained neural modules into deep networks.
+
+\begin{figure}[!htb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.png}
+\end{center}
+   \caption{a schematic representation of this paper proposed model.}
+\label{fig:onecol}
+\end{figure}
+%-------------------------------------------------------------------------
+\section{Formatting your paper}
+
+Thus the goal in this paper is to specify a framework for modular, compostable, jointly-trained neural networks. In this framework, researches first predict the structure of the computation needed to answer each question individually, then realize this structure by constructing an appropriately shaped neural network from an inventory of reusable modules ~\cite{andreas2016neural}. These modules are learned jointly, rather than trained in isolation, and specialization to individual tasks (identifying properties, spatial relations, etc.) arises naturally from the training objective. In this paper, researchers established a module to solve each question by predicting. Then these modules are connected to each other to form whole. These modules can realize to train jointly. And this method can modularized the problem and improve the efficiency of the work.
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
