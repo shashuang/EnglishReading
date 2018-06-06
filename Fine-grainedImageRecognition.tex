@@ -1,0 +1,81 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Picking deep filter responses for fine-grained image recognition}
+
+\author{Shuang Sha \\\\ June 6,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  Recognizing fine-grained sub-categories such as birds and dogs is extremely challenging due to the highly localized and subtle differences in some specific parts. This paper proposes an automatic fine-grained recognition approach which is free of any object/part annotation at both training and testing stages. This method consists of two steps of deep filter response picking. The first picking step is to find distinctive filters which respond to specific patterns significantly and consistently. The second picking step is to pool deep filter responses via spatially weighted combination of Fisher Vectors.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+As an emerging research topic, fine-grained recognition aims at discriminating usually hundreds of sub-categories belonging to the same basic-level category. It lies between the basic-level category classification (e.g. categorizing bikes, boats, cars, and so on in Pascal VOC~\cite{Everingham2010The}) and the identification of individual instances (e.g. face recognition). In fact, fine-grained sub-categories often share the same parts, and are often discriminated by the subtle differences in texture and color properties of these parts. For example, all birds should have wings, legs and breast etc. And when discriminating similar birds, we can count by only the breast color.
+
+This paper proposes an automatic part detection strategy for fine-grained recognition, which is free of any object / part level annotation at both training and testing stages ~\cite{Zhang2016Picking}.  As shown in Figure ~\ref{fig:onecol}, which shows some top responding patches of some filters on CUB200-2011. It can be found that some filters work as part detectors and respond to specific parts (e.g., the head of bird). The approach of this paper is to elaborately pick deep filters with significant and consistent responses. And an overview of this paper proposed framework is shown in Figure ~\ref{fig:twocol}. We can see that the approach consists of two steps.
+
+\begin{figure}[!htb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.png}
+\end{center}
+   \caption{Figure 1. Illustration of filter selectivity for a typical network
+VGG-M on CUB-200-2011. researchers generate candidate patches
+with selective search ~\cite{J2013Selective} and compute response of each patch at
+conv4 layer. They show several top responding patches of some
+channels and observe that there exist some filters which respond
+to specific patterns (e.g., the head or leg of bird), while most of
+them respond chaotically. This paper proposes to pick deep fil-
+ters with significant and consistent responses, and learn a set of
+discriminative detectors for recognition.}
+\label{fig:onecol}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+   \includegraphics[width=1\linewidth]{2.png}
+\end{center}
+   \caption{An overview of this paper proposed framework.}
+\label{fig:twocol}
+\end{figure}
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
