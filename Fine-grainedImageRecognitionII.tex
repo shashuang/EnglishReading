@@ -1,0 +1,84 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Picking deep filter responses for fine-grained image recognition}
+
+\author{Shuang Sha \\\\ June 8,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+%%%%%%%%% BODY TEXT
+\section{Related Works}
+
+Fine-grained image recognition is a challenging problem and has recently emerged as a hot topic. In this paper, the chief tasks discussed are part localization and feature representation.
+%-------------------------------------------------------------------------
+\subsection{Part Localization}
+
+As fine-grained datasets are often provided with extra annotations of bounding box and part landmarks~\cite{parkhi2011truth,parkhi2012cats}, most works rely on these annotations more or less. In early work, it is usually assumed that annotations are available at both training and testing time. And in later works, annotations are required only during training, and aren¡¯t required at testing time. Recently, in some of new works, the conditions are more relaxed, and no annotations are needed at training and testing time.
+The approach of this paper belongs to the last research, which is free of any object/part level annotation at both training and testing stages. Different from previous works ~\cite{simon2015neural}, researchers learn a set of discriminative detectors via elaborately selecting positive samples and iteratively updating part models.
+
+%-------------------------------------------------------------------------
+\subsection{Feature Representation}
+
+For the description of image, CNN features have achieved breakthrough on a large number of benchmarks~\cite{yao2012codebook}. Different from previous works which encode CNN descriptors globally ~\cite{cimpoi2015deep}, researchers project each response back to the original image and encode each part separately. Most importantly, they propose a picking strategy which conditionally selects responses based on their importance for recognition, and encodes them via spatially weighted combination of Fisher Vectors.
+
+%-------------------------------------------------------------------------
+\section{Learning Part Detectors}
+
+In this section, the goal is to learn a collection of discriminative detectors that automatically discover discriminative object/parts. And in order to realize this goal, this work consists of three modules: positive sample initialization, regularized detector training, and detector selection.
+
+%-------------------------------------------------------------------------
+\subsection{Picking Filters: Positive Sample Initialization}
+Different from previous works, researchers propose a picking strategy which elaborately selects distinctive and consistent patches based on the responses of convolutional neural network (CNN) filter banks~\cite{Zhang2016Picking}. In order to find which filters are distinctive for part discovery, they first generate a large pool of region proposals with selective search [25], and randomly sample a subset of one million patches.
+As shown in Figure ~\ref{1}, the response distributions are sparse, with most responses focusing on only a few channels (e.g., for CUB-200-2011, over 90\% responses focus on the top 5\% channels). they refer to these channels as distinctive filters, which respond to specific patterns significantly. In their experiment, they select channels which include the top 90\% responses as distinctive.
+
+\begin{figure}[!htpb]
+\centering
+\subfigure[CUB-200-2011]{
+\label{figa} %% label for first subfigure
+\includegraphics[width=1.5in]{1.jpg}}
+%\hspace{1in}
+\subfigure[Stanford Dogs]{
+\label{fig:subfig:b} %% label for second subfigure
+\includegraphics[width=1.5in]{2.jpg}}
+\caption{Figure 1. Response distributions of the top scored 10K patches on VGG-M (512 channels). The top scored responses only focus on a few channels. We remove the channels with lower response frequency for better visualization.}
+\label{1} %% label for entire figure
+\end{figure}
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
