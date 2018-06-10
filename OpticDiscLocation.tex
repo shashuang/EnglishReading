@@ -1,0 +1,84 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Robust optic disc location via combination of weak detectors}
+
+\author{Shuang Sha \\\\ June 10,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  This paper presents a new robust approach for the automatic location of the optic disc. The approach was tested using the well-known STARE data set (81 images: 31 healthy retinas and 50 containing pathological lesions of various types and severity) and 20 wide-field-of-view scanning laser ophthalmoscope (SLO) images acquired with an OPTOS instrument. We achieved 91.4\% detection rate in the STARE data set and 100\% in the OPTOS data set.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Method}
+
+The idea of this work is to generate several location hypotheses for the main retinal landmarks (OD, macula and arcades) using independent weak detectors, to leverage contextual evidence about the location of the OD.
+Before running each independent weak detector, illumination and contrast are normalized~\cite{Perez2008Robust}. In order to this work, researchers have applied to the algorithm presented in ~\cite{foracchia2005luminosity}. This work converts an RGB colored image into a normalized grey-scale image based only on green channel. As shown in Figure ~\ref{fig:onecol}, this is a framework of this approach. And 3 independent feature detectors are combined with anatomic knowledge to find the best solution.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=1.0\linewidth]{1.jpg}
+\end{center}
+   \caption{Sketch of the methodology. 3 independent feature detectors are combined with anatomic knowledge to find the best solution.}
+\label{fig:onecol}
+\end{figure}
+
+%-------------------------------------------------------------------------
+\subsection{Arcades Detector}
+
+To locate the main arcades candidates, the normalized image is first smoothed using a bi-dimensional Gaussian filter of 19x19 pixels ~\cite{Perez2008Robust}. 35 horizontal lines are distributed uniformly covering all the image to detect the vertical vessels close to the OD, while 20 vertical lines are used to detect the horizontal vessels located further of the OD. As shown in Figure ~\ref{fig:twocol}, the intensity profile along a short vessel segment can be approximated by an inverted Gaussian, 5 different bi-dimensional masks (Gaussian cylinders) are created with different standard deviations to cater for various vessel widths. A flat mask is added to detect points that not fitted satisfactorily by the Gaussian masks (mainly low-contrast regions). To account for different orientations, each bi-dimensional mask is rotated in 12 different orientations (between $ 0^\circ $ and $165^\circ $ with a step of $15^\circ$). An example of candidate vessel points can be seen in Figure ~\ref{fig:threecol}.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=1.0\linewidth]{2.jpg}
+\end{center}
+   \caption{Left: The cross-section of the 6 different masks, 5 truncated inverted Gaussians with a flat branch attached at each extreme and the flat profile. Right: The 6 corresponding bi-dimensional masks.}
+\label{fig:twocol}
+\end{figure}
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.6\linewidth]{3.jpg}
+\end{center}
+   \caption{The vessel candidates after removing noise which fits into the flat mask.}
+\label{fig:threecol}
+\end{figure}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
