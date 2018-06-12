@@ -1,0 +1,92 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Very short-term prediction model for photovoltaic power based on improving the total sky cloud image recognition}
+
+\author{Shuang Sha \\\\ June 12,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  Cloud observation is often used in the very short-term prediction of photovoltaic power. However, in the haze weather, the quality of the total sky image will fall, the cloud recognition effect is reduced, further leads to decreased levels of photovoltaic power prediction. The study of this paper proposes a photovoltaic power prediction algorithm, which take into account the image quality decline caused by haze. Firstly, the extraction method using discrete Fourier transform checks whether clouds exist or not, and computing in the position of the solar facula, and then fix the facula. Secondly, using piece wise linear transformation algorithm for cloud enhancement, and then generate intensity layered cloud stain chart. Finally, the relationship between cloud and radiation is used to realize the very short-term prediction of photovoltaic power. The experimental results show that the algorithm has a very good universality, and the cloud image can be identified by the fog and haze, therefore it improves the accuracy of the ultra-short term prediction of photovoltaic power.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+Solar energy, as a green and renewable energy, has been widely developed and applied. Cloud is an important factor of global climate change. Its growth and disappearance has a great influence on the uncertain change of ground radiation ~\cite{Yang2013Application}.The clouds will lead to attenuation of solar radiation, when clouds appear, photovoltaic power plants will receive less sunlight, resulting in photovoltaic power instability, but it is difficult to predict ~\cite{xiang2015very}.
+In order to realize could recognition of cloud image, this paper propose a cloud extraction method based on the solar facula elimination and piecewise linear transformation cloud feature enhancement algorithm.
+
+
+%-------------------------------------------------------------------------
+\section{Could judgement}
+%-------------------------------------------------------------------------
+\subsection{Judgement method}
+When clouds exist, the gray values of pixels vary greatly, and the frequency changes in corresponding frequency domain are larger. Therefore, Fourier cloud diagnostic method can be adopted. In general, the more obvious the change of nephogram contents in spatial domain, the greater the frequency value is~\cite{xiang2017very}.
+In the processing of nephograms, the discrete Fourier transform (DFT) is adopted, while the two-dimensional DFT $F(\mu)$ is
+\begin{align}
+F(\mu,v) &=\Im[f(x,y)]  \notag \\ 
+&=\sum_{x=0}^{M-1}\sum_{y=0}^{N-1} f(x,y)e^{-j2\pi(\frac{\mu x}{M}+\frac{vy}{N})}
+\end{align}
+Where M and N are the width and height of the cloud picture. In order to calculate the frequency of cloud image more accurately, polar transformation is used, as shown in Figure ~\ref{fig:onecol}.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.jpg}
+\end{center}
+   \caption{Polar coordinates of cloud images.}
+\label{fig:onecol}
+\end{figure}
+%-------------------------------------------------------------------------
+\subsection{Algorithm verification}
+Based on the above DFT principle, the original nephogram and spectrogram of Fourier transform with different cloud amounts are as follows.
+As shown in Figure ~\ref{figa}, the original image is relatively flat, clear image, and its frequency is smaller through Fourier transformation, while in the nephogram changing obviously and containing clouds, as shown in Figure ~\ref{figb}, the frequency value is greater. Therefore, after Fourier transform, cloud changes can be analysed according to characteristics of the original image in the frequency domain. In the application of cloud judgement, DFT algorithm can greatly reduce cloud misjudgement of degraded nephogram on haze weather conditions, compared with thresholding method.
+\begin{figure}[!htpb]
+\centering
+\subfigure[]{
+\label{figa} %% label for first subfigure
+\includegraphics[width=0.8\linewidth]{2a.jpg}}
+\hspace{1in}
+\subfigure[]{
+\label{figb} %% label for second subfigure
+\includegraphics[width=0.8\linewidth]{2b.jpg}}
+\caption{Types of common cloud images a no cloud image and DFT diagram b cloud image and a DFT diagram.}
+\label{fig:twocol} %% label for entire figure
+\end{figure}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
