@@ -1,0 +1,107 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Very short-term prediction model for photovoltaic power based on improving the total sky cloud image recognition}
+
+\author{Shuang Sha \\\\ June 14,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+
+%%%%%%%%% BODY TEXT
+\section{Solar facula repair}
+\subsection{Solar facula location}
+To remove the solar facula, researchers first need to locate the solar image on the nephogram. On the ground-based nephogram $I(x,y)$, the imaging circle radius is R, the imaging centre is $O(x_0,y_0)$, the location of solar facula image $g$ is $(x_g,y_g)$. As shown in Figure ~\ref{fig:onecol}, the solar altitude angle $\alpha_s$ can be calculated by latitude $\varphi$, time angle $\omega$ and declination angle $\delta$.
+The latitude $\varphi$ can be obtained from the basic information of the whole sky imager, and the time angle $\omega$ is equal to the time (hour) from the noon multiplied by $15^\circ$. The declination angle $\delta$ can be approximated according to the Cooper equation, and the method is as follows:
+\begin{equation}
+\delta=23.45 \times \sin[360 \times \frac{284+n}{265}]
+\end{equation}
+Where n is the date serial number in a year, and the solar altitude angle $\alpha_s$ can be calculated as
+
+\begin{equation}
+\alpha_s=\arcsin (\sin\varphi\sin\delta+\cos\varphi\cos\delta\cos\omega)
+\end{equation}
+
+The solar azimuth $\gamma_s$ can be calculated by $\delta$,$\omega$,$\alpha_s$
+\begin{equation}
+\gamma_s=\arcsin[\frac{cos\delta \times \sin \omega}{\cos\alpha_s}]
+\end{equation}
+
+Finally, calculate the location of solar facula on the ground-based nephogram
+\begin{align}
+\begin{cases}
+x_g &=x_0+12\sin\gamma_s \\
+y_g &=y_0+12\cos\gamma_s
+\end{cases}
+\end{align}
+
+Obviously,if$ (x_g-x_0)^2+(y_g-y_0)^2>R^2$,the rule will end.
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.jpg}
+\end{center}
+   \caption{Horizon coordinate system.}
+\label{fig:onecol}
+\end{figure}
+%-------------------------------------------------------------------------
+\subsection{Solar facula removal}
+Based on the analysis above, if there is a solar facula on the nephogram, then it must be located at position $g$. Due to light scattering,solar facula imaging will cover point $g$. Because of the sun light intensity and particle interaction, the spot size will be different.According to the statistical empirical results, the imaging radius of the general solar facula in the nephogram will not exceed one-third of the effective imaging diameter of the nephogram~\cite{xiang2017very}. If the radius of the circle surface that covers the sola facula is $r_g$ , then the detection area of the facula is $S_g\leq 2\pi r_{g}^{2}$. Therefore, in the nephogram $I(x, y)$,
+\begin{equation}
+(x-x_g)^2+(y-y_g)^2\leq r_{g}^{2}
+\end{equation}
+
+Gray scale histogram statistics are applied only to the circular area covering the solar facula, the result is shown in Figure ~\ref{fig:twocol}. The gray level of the pixel in the circle surface is very high~\cite{Singh2008Edge}. At this point, researchers can use the gray histogram feature of the facula area to filter the high gray area of the facula circle, so they can select the appropriate threshold to remove the solar facula. The result is shown in Figure ~\ref{fig:threecol}.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{2.jpg}
+\end{center}
+   \caption{Gray statistical histogram of facula detection region.}
+\label{fig:twocol}
+\end{figure}
+
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{3.jpg}
+\end{center}
+   \caption{ Facula removal.}
+\label{fig:threecol}
+\end{figure}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
