@@ -1,0 +1,80 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Deep features for recognizing disguised faces in the wild}
+
+\author{Shuang Sha \\\\ June 16,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  Unconstrained face verification is a challenging problem owing to variations in pose, illumination, resolution of image, age, etc. Because of this reason, in this paper, researchers proposes a DCNN-based approach for recognizing people under disguises and picking out impostors. They train two different networks on a large dataset comprising of still images and video frames with L2-softmax loss. They fuse features obtained from the two networks and show that the resulting features are effective for discriminating between disguised faces and impostors in the wild.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Related Work}
+
+The standard framework of face verification pipeline is shown in Figure ~\ref{fig:onecol} and consists of the following steps: face detection, facial landmark detection and alignment, feature representation of a face and metric learning.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.jpg}
+\end{center}
+   \caption{A typical face verification system pipeline. During training, a deep network is trained for classification using a large training dataset. After training the network, a metric learning framework (e.g. triplet embedding) is used to embed the features obtained from the deep CNN into a discriminative subspace. At test time, given two faces, the features from the deep CNN are computed and embedded into the embedding subspace. Finally, a similarity score (e.g. cosine similarity) is calculated between the two embedded features.}
+\label{fig:onecol}
+\end{figure}
+
+\subsection{Face Detection}
+
+Face detection is the process of localizing all faces present in an image. Typical face detection methods output bounding box coordinates for each face in an image. With the popularity of deep CNNs, several CNN-face detectors have been proposed in recent years ~\cite{chen2016supervised,li2016face}. Significant improvements in unconstrained face detection performance have also been supported by the availability of large training datasets e.g. FDDB, WIDER ~\cite{yang2016wider}. Both of these datasets contain faces with large variations in pose, illumination, scale, resolution, occlusion etc.
+
+\subsection{Landmark Localization}
+
+The next step of the framework is fiducial keypoint localization. Such landmarks can include eye centers, nose top, mouth corners, ear lobe tips, chin, etc. These landmarks are used for aligning the detected faces, in order words, to transform a given face into a canonical view of the face without losing the identity information~\cite{bansal2018deep}. 
+
+\subsection{Feature Representation}
+
+As shown in Figure ~\ref{fig:onecol}, the next step is to extract features from the aligned face images. Again, deep CNNs are currently the most popular and best performing methods for extracting features. . These feature representations are usually learned using large training sets ~\cite{wolf2011face}. The requirement for such features is that the features for different images of the same subject should be close (in some metric) and the features for images of different subjects should be far.
+
+\subsection{Metric Learning}
+
+The fourth step is metric learning, and it is the process of learning a classifier or similarity measure from data and is an important step for enhancing performance of face verification systems.
+
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
