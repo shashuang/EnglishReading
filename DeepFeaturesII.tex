@@ -1,0 +1,102 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Deep features for recognizing disguised faces in the wild}
+
+\author{Shuang Sha \\\\ June 18,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+%%%%%%%%% BODY TEXT
+\section{Learning Deep face Representations}
+
+Authors describe their approach to face verification and present results on the DFW challenge dataset. They build an ensemble of two deep CNNs for the task. The two networks are trained on the same dataset. An overview of a typical face verification pipeline is shown in figure ~\ref{fig:onecol}.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{1.jpg}
+\end{center}
+   \caption{A typical face verification system pipeline.}
+\label{fig:onecol}
+\end{figure}
+
+\subsection{Dataset}
+
+They used the Universe Face dataset, which is a combination of curated MS-Celeb-1M~\cite{guo2016ms}, UMDFaces~\cite{bansal2017umdfaces}, and frames from UMDFaces-Videos. They removed subject overlaps from the DFW dataset while creating the Universe Face dataset.
+
+\subsection{Loss Function}
+
+They gave a brief description of the $L_2$-constrained softmax (L2SM) loss function used to train our networks. The aim behind L2SM is to improve the softmax loss to give high similarity scores for positive pairs and low similarity scores for negative pairs. L2SM adds an $L_2$-constraint on the feature descriptor, forcing them to lie on a hypersphere of a fixed radius. 
+
+This has two advantages. First, it forces both good quality and bad quality images to have the same norm, unlike the softmax loss which gave good quality images a higher norm than poor quality images. This means that L2SM gives similar attention to both good and bad quality faces, unlike softmax. Second, L2SM forces the features from the same subject to be closer and features from different subjects to be far from each other. Therefore, it maximizes the margin netween positive and negative pairs.
+
+\subsection{Results}
+
+Firstly, researchers evaluated their approach on the relatively simple Disguised and Makeup Faces Database ~\cite{wang2016recognizing}. The images in this dataset are mostly celebrities with different disguises and makeups. This method achieves significant performance improvements over the baseline results reported in ~\cite{wang2016recognizing}. The method achieves a true accept rate (TAR) of 92\% at a false accept rate (FAR) of 0.0001, and a TAR of 96.4\% at FAR 0.001. This shows that our method can recognize people with make-up and disguises with high confidence ~\cite{bansal2018deep}.
+
+Secondly, they evaluated their approach on the recently announced Disguised Faces in the Wild (DFW) challenge. The DFW challenge provides about 7,800 test images for about 600 identities containing both disguises and impersonations. Each identity in the test set contains a normal image, some validation images, a few images with the subject in disguise, and a few images of impersonators i.e. other people who look like the subject under consideration. The aim of this challenge is to recognize disguised faces as belonging to the subject under consideration and reject the impersonators. The evaluation criterion is a standard ROC curve which plots the True Acceptance Rate (TAR) against False Acceptance Rate (FAR).
+
+Figure ~\ref{fig:twocol} shows the ROC curves for both our networks and for the final fused scores. Table ~\ref{1} gives the TAR values at FAR = 0.01 and FAR = 0.001 for the three kinds of features.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{2.jpg}
+\end{center}
+   \caption{Results ROC.}
+\label{fig:twocol}
+\end{figure}
+
+\begin{table}[!htpb]
+  \centering
+  \caption{TAR (\%) at different FAR values for the three different features used in this work.}
+    \label{1}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  Feature    &FAR=0.001  &FAR=0.001 \\
+  \hline
+  ResNet-101 &70.0       &85.1 \\
+  \hline
+  Inception ResNet-101 &73.2 &86.6 \\
+  \hline
+  Fused      &72.9       &86.7 \\
+  \hline
+  \end{tabular}
+\end{table}
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
