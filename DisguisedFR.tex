@@ -1,0 +1,79 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Deep Disguised Faces Recognition}
+
+\author{Shuang Sha \\\\ June 20,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  Recently, deep learning based approaches have yielded a significant improvement in face recognition in the wild. However, disguised face recognition is still a challenging task. People need to use machine to recognize someone who has disguised. In this paper, authors have proposed a two-stage training approach to utilize the small-scale training data provided by the Disguised Faces in the Wild (DFW) competition. Specifically, in the first stage, they train Deep Convolutional Neural Networks (DCNNs) for generic face recognition. In the second stage, they use Principal Components Analysis (PCA) based on the DFW training set to find the best transformation matrix for identity representation of disguised faces. They evaluate their model on the DFW testing dataset and it shows better performance over the state-ofthe-art generic face recognition methods.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Related Work}
+
+Face recognition is a classical problem in computer vision. In terms of testing protocol, it can be evaluated under closed-set or open-set settings. In this paper, open-set face recognition which facilities real-world application is only researched.
+
+
+\subsection{Generic Face Recognition}
+
+Generic face recognition methods are designed for addressing all kinds of face recognition. Researchers proposed different loss functions for open-set face recognition such as contrastive loss ~\cite{Sun2015Deeply}, triplet loss ~\cite{Schroff2015FaceNet}, center loss ~\cite{Wen2016A}, A-Softmax loss and AM-Softmax loss. However, these modified softmax loss functions and metric learning loss functions cannot perform good results with imbalanced training data and DCNNs-based methods require large-scale training data. Therefore, directly using these methods in the DFW training data will not get good performance.
+
+\subsection{Disguised Face Recognition}
+
+Disguised face recognition pays attention to recognizing the identity of disguised faces and impersonators. However, there are limited research focus on this topic. Some methods and dataset are conducted in controlled scenarios. Although some dataset are collected from uncontrolled scenarios for disguised face recognition, but in the DFW dataset, there are very few images for each subject.
+
+\section{Proposed Method}
+
+\subsection{Overall Framework}
+
+As shown in Figure ~\ref{fig:onecol}, this is framework that overall identity representation extraction. It includes two DCNNs for generic face identity features extraction and a transformation matrix $W_{select}$ for disguised faces adaptation.
+
+
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=1.0\linewidth]{1.jpg}
+\end{center}
+   \caption{Illustration of overall identity representation extraction pipeline.}
+\label{fig:onecol}
+\end{figure}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
