@@ -1,0 +1,120 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Deep Disguised Faces Recognition}
+
+\author{Shuang Sha \\\\ June 20,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+%%%%%%%%% BODY TEXT
+\section{Experiment}
+\subsection{Training Details}
+
+
+In this paper, authors merge several public web-collected face recognition datasets including CASIA-WebFace, CelebA~\cite{liu2015deep}, MS1M~\cite{guo2016ms}, UMDFaces~\cite{bansal2017umdfaces} and VGGFace2 as the generic face recognition training dataset. They have removed the images or identities overlap between training and testing based on provided identity names. For disguised face recognition adaptation, they select the first 250 transformation vectors to form the subspace projection $W_{select}$.
+
+
+\subsection{Testing Details}
+
+They use $L_2$ distance to compute the identity distance in their two-stage training. In the one-stage training, they compute the cosine similarity as identity similarity. In the Disguised Faces in the Wild (DFW) training, for a given subject, positive pairs are constructed from normal, validation and disguised face images. In contrast, negative pairs are constructed from normal and impostor face images as well as cross subject face images.
+
+\subsection{One-stage Training}
+
+As shown in Figure~\ref{fig:onecol}, authors use two DCNNs for un-aligned and aligned faces respectively. In one-stage training, they evaluate the effectiveness of using multiple DCNNs. The results of the experiment is shown in Figure~\ref{fig:twocol} and Table~\ref{1}, it can be seen that combining different DCNNs can improve the performance.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=1.0\linewidth]{1.jpg}
+\end{center}
+   \caption{Illustration of overall identity representation extraction pipeline.}
+\label{fig:onecol}
+\end{figure}
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{2.jpg}
+\end{center}
+   \caption{Evaluation of different DCNNs. These DCNNs are trained using one-stage training.}
+\label{fig:twocol}
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption{Evaluation of different DCNNs. These DCNNs are trained using one-stage training.}\label{1}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  Methods     & GAR@FAR=1\%   & GAR@FAR=0.1\% \\
+  \hline
+  Aligned     & 0.8421        & 0.6912 \\
+  \hline
+  Un-Aligned  & 0.8474        & 0.7038 \\
+  \hline
+  Combined    & 0.8571        & 0.7131 \\
+  \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Two-stage Training}
+
+In two-stage training, they utilize the small-scale DFW training set. As shown in Figure~\ref{fig:threecol} and Table~\ref{2}, it can be seen that two-stage training can improve the performance compared with one-stage training.
+
+\begin{figure}[!htpb]
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{3.jpg}
+\end{center}
+   \caption{Evaluation of different training approaches.}
+\label{fig:threecol}
+\end{figure}
+
+
+\begin{table}
+  \centering
+  \caption{Evaluation of different DCNNs. These DCNNs are trained using one-stage training.}\label{2}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  Methods     & GAR@FAR=1\%   & GAR@FAR=0.1\% \\
+  \hline
+  One-stage   & 0.8421        & 0.6912 \\
+  \hline
+  Two-stage   & 0.8474        & 0.7038 \\
+  \hline
+  \end{tabular}
+\end{table}
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
