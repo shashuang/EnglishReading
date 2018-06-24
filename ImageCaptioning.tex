@@ -1,0 +1,75 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false,colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=green,
+            backref=page]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+%\setcounter{page}{4321}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Rich Image Captioning in the Wild}
+
+\author{Shuang Sha \\\\ June 24,2018}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  In this paper, authors proposed an image caption system that automatically describe images in the wild. And this research solved new challenges. The challenges include emerging high quality caption about human judgments, out-of-domain data handing, and low latency required in many applications. Built on top of an advanced framework, Authors developed three models. The three models include a deep vision model that detects a broad range of visual concepts, an entity recognition model that identifies celebrities and landmarks, and a confidence model for the caption output. Experimental results show that this caption system can obtain better performs.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+Captioning is a fundamental task in Artificial Intelligence (AI) which describes objects, attributes and relationship in an image, or in a natural language form. It has many applications such as semantic image search, visual intelligent chat, or helping some people who eyes have problems to see the world. Recently, many researches have researched image captioning, and it has a hot topic, as shown in~\cite{Fang2015From,Donahue2015Long,Karpathy2015Deep,Vinyals2015Show}.
+
+The leading approaches mainly use two forms. One forms takes an end-to end, encoder-decoder framework adopted from machine translation,~\cite{Vinyals2015Show} use this form. The other form applies a compositional framework~\cite{Fang2015From}. However, the two forms have some abuses, it is unclear how these systems perform in open-domain images. Furthermore, most of the image captioning systems only describe generic visual content without identifying key entities. The entities, such as celebrities and landmarks, are important pieces in common sense and knowledge. As shown in Figure~\ref{fig:onecol}, in many situations, the entities are the key information in an image.
+
+\begin{figure}[!htpb]
+\centering
+\subfigure[Sasha Obama, Malia Obama, Michelle Obama, Peng Liyuan \emph{et al.} posing for a picture with Forbidden City in the background.]{
+%% label for first subfigure
+\includegraphics[width=0.8\linewidth]{1.jpg}}
+\hspace{1in}
+\subfigure[A small boat in Ha-Long Bay.]{
+%% label for second subfigure
+\includegraphics[width=0.8\linewidth]{2.jpg}}
+\caption{ Rich captions enabled by entity recognition.}
+\label{fig:onecol} %% label for entire figure
+\end{figure}
+
+In this paper, authors proposed a captioning system for open domain images. They take a compositional approach by starting from one of the advanced image captioning framework~\cite{Fang2015From}. In order to solve the challenges when describing images in the wild, they developed a visual model by detecting a boarder range of visual concepts, and an entity recognition model that generates caption by recognizing celebrities and landmarks, as shown in Figure~\ref{fig:onecol}. Further, in order to provide graceful handling for images that are difficult to describe, they built a confidence model to estimate a confidence score for the caption output based on the vision and text features, and provide a back-off caption for these difficult cases.
+
+
+In order to measure the quality of the caption from the human¡¯s perspective, they carried out a series of human evaluations through crowd souring, and report results based on human¡¯s judgments. The results of the experiment shown that the system proposed by this paper can gain better results than other system.
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{books}
+}
+
+\end{document}
